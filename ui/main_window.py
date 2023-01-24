@@ -313,7 +313,8 @@ class MyApp(base, form):
         sts.show("Creating the ROM Templates...")
         log.info("Creating the Templates for the OW Data Pointers")
         sizes = [core.FT16x32, core.FT32x32, core.FT16x16, core.FT64x64,
-                 core.FT128x64, core.FT48x48, core.FT88x32, core.FT96x40]
+                 core.FT128x64, core.FT48x48, core.FT88x32, core.FT96x40,
+                 core.FT1x1]
 
         for i, size in enumerate(sizes):
             # Search all the OWs in the ROM and copy the OW Data of the first

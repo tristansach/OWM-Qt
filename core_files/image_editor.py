@@ -29,6 +29,9 @@ def import_frame(im, addr, ow_type, row_grid=0, column_grid=0):
     elif ow_type == core.T128x64:
         row = 8
         col = 16
+    elif ow_type == core.T1x1:
+        row = 4
+        col = 4
     else:
         row = 6
         col = 6

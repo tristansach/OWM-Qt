@@ -13,15 +13,17 @@ T128x64 = 5
 T48x48 = 6
 T88x32 = 7
 T96x40 = 8
+T1x1 = 9
 
-FT16x32 = [0x0, 0x1]     # [16x32]
-FT32x32 = [0x0, 0x2]     # [32x32]
-FT16x16 = [0x80, 0x0]    # [16x16]
-FT64x64 = [0x0, 0x8]     # [64x64]
-FT128x64 = [0x0, 0x10]    # [128x64] FR Only
-FT48x48 = [0x80, 0x4]    # [48x48] Emerald only
-FT88x32 = [0x80, 0x5]    # [88x32] Emerald only
-FT96x40 = [0x80, 0x7]    # [96x40] Emerald only
+FT16x32 = [0x0, 0x1]     # [16x32] [0, 1]
+FT32x32 = [0x0, 0x2]     # [32x32] [0, 2]
+FT16x16 = [0x80, 0x0]    # [16x16] [128, 0]
+FT64x64 = [0x0, 0x8]     # [64x64] [0, 8]
+FT128x64 = [0x0, 0x10]    # [128x64] FR Only [0, 16]
+FT48x48 = [0x80, 0x4]    # [48x48] Emerald only [128, 4]
+FT88x32 = [0x80, 0x5]    # [88x32] Emerald only [128, 5]
+FT96x40 = [0x80, 0x7]    # [96x40] Emerald only [128, 7]
+FT1x1 = [0x0, 0x4]
 
 
 # ----------------------Functions------------------------------
@@ -176,6 +178,8 @@ def get_frame_size(ow_type):
         return 1408  # 0x580
     if ow_type == T96x40:
         return 1920  # 0x780
+    if ow_type == T1x1:
+        return 512
 
 
 def clear_frames(addr, frames, size):
@@ -228,6 +232,9 @@ def get_frame_dimensions(ow_type):
     elif ow_type == T96x40:
         width = 96
         height = 40
+    elif ow_type == T1x1:
+        width = 32
+        height = 32
 
     return width, height
 
@@ -310,6 +317,8 @@ def is_frames_ptr(addr):
         tp = 7
     elif frame == FT96x40:
         tp = 8
+    elif frame == FT1x1:
+        tp = 9
     else:
         tp = 0
 
@@ -434,6 +443,8 @@ class FramesPointers:
             frametype = FT88x32
         elif ow_type == T96x40:
             frametype = FT96x40
+        elif ow_type == T1x1:
+            frametype = FT1x1
 
         # Write the frames Pointers
         for i in range(0, frames_num):
@@ -474,6 +485,8 @@ class FramesPointers:
             tp = T88x32
         elif frame == FT96x40:
             tp = T96x40
+        elif frame == FT1x1:
+            tp = T1x1
 
         return tp
 
