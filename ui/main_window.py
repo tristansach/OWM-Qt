@@ -305,7 +305,7 @@ class MyApp(base, form):
 
         # Create the new templates
         templates = []
-        for i in range(1, 9):
+        for i in range(1, 10):
             templates.append(open("Files/" + rom_base + "/Template" + str(i),
                                   "wb+"))
             os.chmod("Files/" + rom_base + "/Template" + str(i), 0o777)

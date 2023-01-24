@@ -45,12 +45,17 @@ class Game:
 
     def seek(self, pos):
         if pos > self.rom_size:
-            raise IndexError
+            return
+            # raise IndexError
         self.pos = pos
 
     def read_byte(self):
         self.pos += 1
-        return int(self.rom_contents[self.pos - 1])
+        try:
+            return int(self.rom_contents[self.pos - 1])
+        except IndexError:
+            self.pos -= 1
+            return 0
 
     def write_byte(self, val):
         if 0 <= val <= 255:

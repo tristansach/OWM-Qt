@@ -52,7 +52,7 @@ def update_ow_tables_pointers_table(ow_tbls_ptrs_tbl):
 def update_rom_tamplates(files_path):
     global TEMPLATES
     if os.path.exists(files_path):
-        for tmpl in ["Template{}".format(i) for i in range(1, 9)]:
+        for tmpl in ["Template{}".format(i) for i in range(1, 10)]:
             path = files_path + tmpl
             temp = open(path, 'r+b')
             template = mmap.mmap(temp.fileno(), 0)
